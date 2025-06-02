@@ -1,48 +1,36 @@
 # Adminer Command Palette
 
-A powerful command palette plugin for [Adminer](https://www.adminer.org) that provides quick navigation to databases and tables using keyboard shortcuts.
+A command palette plugin for [Adminer](https://www.adminer.org) that provides quick navigation to databases and tables using keyboard shortcuts.
 
-![Command Palette Demo](demo.gif)
+Neither bragging, nor ashamed – it was written almost entirely by Cursor + Sonnet 4.
+
+![Command Palette Demo](demo.png)
 
 ## Features
 
-- 🚀 **Quick Access**: Press `Cmd+K` (Mac) or `Ctrl+K` (Windows/Linux) to open
-- 🔍 **Fuzzy Search**: Smart search with intelligent ranking
-- ⌨️ **Keyboard Navigation**: Full keyboard support with arrow keys
-- 🖱️ **Mouse Support**: Seamless mouse and keyboard interaction
-- 📊 **Table Priority**: Tables are prioritized over databases in search results
-- 🎨 **Modern UI**: Clean, responsive design with hover effects
+🚀 **Quick Access**: Press `Cmd+K` (Mac) or `Ctrl+K` (Windows/Linux) to open
+🔍 **Fuzzy Search**: Smart search with intelligent ranking
+⌨️ **Keyboard Navigation**: Full keyboard support with arrow keys
+🖱️ **Mouse Support**: Seamless mouse and keyboard interaction
+📊 **Table Priority**: Tables are prioritized over databases in search results
+🎨 **Modern UI**: Clean, responsive design with hover effects
 
-## Installation
-
-### Method 1: Direct Download
-1. Download `command-palette.php` from this repository
-2. Place it in your Adminer plugins directory
-3. Include it in your Adminer setup
-
-### Method 2: Git Clone
-```bash
-git clone https://github.com/yourusername/adminer-command-palette.git
-cp adminer-command-palette/command-palette.php /path/to/adminer/plugins/
-```
-
-## Usage
+## Installation & Usage
 
 ### Setup
-Include the plugin in your Adminer configuration:
+1. Download `command-palette.php` from this repository
+2. Place it in your `adminer-plugins/` directory next to your `adminer.php` file
+3. Create or update your `adminer-plugins.php` file to include the plugin:
 
 ```php
-<?php
-function adminer_object() {
-    include_once "./plugins/command-palette.php";
-
-    return new AdminerPlugin(array(
-        new AdminerCommandPalette(),
-        // ... other plugins
-    ));
-}
-include "./adminer.php";
+<?php // adminer-plugins.php
+return array(
+    new AdminerCommandPalette(),
+    // You can add other plugins here
+);
 ```
+
+For detailed plugin installation instructions, see the [official Adminer plugins documentation](https://www.adminer.org/en/plugins/#use).
 
 ### Keyboard Shortcuts
 - **`Cmd+K` / `Ctrl+K`**: Open/close command palette
@@ -59,23 +47,10 @@ include "./adminer.php";
 
 ## Requirements
 
-- Adminer 4.x+
+- **Adminer 5.x+** (this plugin only works with Adminer 5)
 - Modern browser with JavaScript enabled
 - CSP-compliant (uses nonce for inline scripts)
 
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
 ## License
 
-This project is dual-licensed under:
-- [Apache License 2.0](LICENSE-APACHE)
-- [GNU General Public License v2.0](LICENSE-GPL)
-
-You may choose either license.
-
-## Acknowledgments
-
-- Built for the [Adminer](https://www.adminer.org) community
-- Inspired by modern command palette interfaces like VS Code and GitHub
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.

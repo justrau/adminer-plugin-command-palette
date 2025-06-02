@@ -3,7 +3,7 @@
 /**
  * Command Palette Plugin for Adminer
  * Adds a command palette with Cmd+K shortcut to quickly navigate to tables and databases
- * @link https://www.adminer.org/plugins/#use
+ * @link https://www.adminer.org/en/plugins/#use
  * @author Justas Raudonius
  * @license https://opensource.org/licenses/MIT MIT License
  */
