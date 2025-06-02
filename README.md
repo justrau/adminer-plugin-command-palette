@@ -9,10 +9,15 @@ Neither bragging, nor ashamed – it was written almost entirely by Cursor + Son
 ## Features
 
 🚀 **Quick Access**: Press `Cmd+K` (Mac) or `Ctrl+K` (Windows/Linux) to open
+
 🔍 **Fuzzy Search**: Smart search with intelligent ranking
+
 ⌨️ **Keyboard Navigation**: Full keyboard support with arrow keys
+
 🖱️ **Mouse Support**: Seamless mouse and keyboard interaction
+
 📊 **Table Priority**: Tables are prioritized over databases in search results
+
 🎨 **Modern UI**: Clean, responsive design with hover effects
 
 ## Installation & Usage
@@ -47,7 +52,7 @@ For detailed plugin installation instructions, see the [official Adminer plugins
 
 ## Requirements
 
-- **Adminer 5.x+** (this plugin only works with Adminer 5)
+- **Adminer 5.x** (this plugin only works with Adminer 5)
 - Modern browser with JavaScript enabled
 - CSP-compliant (uses nonce for inline scripts)
 
