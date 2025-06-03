@@ -52,9 +52,7 @@ For detailed plugin installation instructions, see the [official Adminer plugins
 
 ## Requirements
 
-- **Adminer 5.x** (this plugin only works with Adminer 5)
-- Modern browser with JavaScript enabled
-- CSP-compliant (uses nonce for inline scripts)
+- **Adminer 5.x**
 
 ## License
 
