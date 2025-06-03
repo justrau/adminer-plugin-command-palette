@@ -2,7 +2,7 @@
 
 A command palette plugin for [Adminer](https://www.adminer.org) that provides quick navigation to databases and tables using keyboard shortcuts.
 
-Neither bragging, nor ashamed – it was written almost entirely by Cursor + Sonnet 4.
+Neither bragging, nor ashamed – it was written almost entirely by Cursor + Claude Sonnet 4.
 
 ![Command Palette Demo](demo.png)
 
