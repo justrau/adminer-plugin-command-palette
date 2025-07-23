@@ -223,11 +223,16 @@ class AdminerCommandPalette extends Adminer\Plugin {
                         if (textLower.startsWith(queryLower)) return { score: 9000, matches: [] };
 
                         // Contains query gets high score (higher than any fuzzy match)
-                        if (textLower.includes(queryLower)) return { score: 8000, matches: [] };
+                        if (textLower.includes(queryLower)) {
+                            // Bonus for shorter strings when containing the query
+                            const lengthBonus = Math.max(0, 100 - text.length);
+                            return { score: 8000 + lengthBonus, matches: [] };
+                        }
 
                         // Starts with first character and contains query gets priority
                         if (queryLower.length > 0 && textLower.startsWith(queryLower[0]) && textLower.includes(queryLower)) {
-                            return { score: 7500, matches: [] };
+                            const lengthBonus = Math.max(0, 50 - text.length);
+                            return { score: 7500 + lengthBonus, matches: [] };
                         }
 
                                                 // Fuzzy matching
@@ -278,8 +283,13 @@ class AdminerCommandPalette extends Adminer\Plugin {
                             return { score: 0, matches: [] };
                         }
 
-                        // Penalty for length difference
-                        score -= Math.abs(text.length - query.length) * 0.5;
+                        // Penalty for length difference - stronger penalty for longer strings
+                        score -= Math.abs(text.length - query.length) * 2;
+
+                        // Additional bonus for shorter strings in fuzzy matches
+                        if (text.length < 30) {
+                            score += Math.max(0, 30 - text.length);
+                        }
 
                         return { score: Math.max(0, score), matches };
                     }
