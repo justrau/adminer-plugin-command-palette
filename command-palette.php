@@ -95,7 +95,11 @@ class AdminerCommandPalette extends Adminer\Plugin {
             }
 
             // Add databases after tables
-            $databases = Adminer\get_databases(false);
+            $databases = array();
+            try {
+                $databases = Adminer\get_databases(false);
+            } catch (\Throwable $e) {
+            }
             $hidden_databases = array('information_schema', 'mysql', 'performance_schema', 'sys');
             if ($databases) {
                 foreach ($databases as $database) {
