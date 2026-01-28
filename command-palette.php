@@ -223,8 +223,11 @@ class AdminerCommandPalette extends Adminer\Plugin {
                         // Exact match gets highest score
                         if (textLower === queryLower) return { score: 10000, matches: [] };
 
-                        // Starts with query gets very high score
-                        if (textLower.startsWith(queryLower)) return { score: 9000, matches: [] };
+                        // Starts with query gets very high score, shorter strings rank higher
+                        if (textLower.startsWith(queryLower)) {
+                            const lengthBonus = Math.max(0, 100 - text.length);
+                            return { score: 9000 + lengthBonus, matches: [] };
+                        }
 
                         // Contains query gets high score (higher than any fuzzy match)
                         if (textLower.includes(queryLower)) {
