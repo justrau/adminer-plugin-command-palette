@@ -7,12 +7,14 @@
  * @author Justas Raudonius
  * @license https://opensource.org/licenses/MIT MIT License
  */
-class AdminerCommandPalette extends Adminer\Plugin {
+class AdminerCommandPalette extends Adminer\Plugin
+{
 
-    function head() {
-        // Load on all pages
-        if (true) {
-            echo '<script nonce="' . Adminer\get_nonce() . '">
+	function head()
+	{
+		// Load on all pages
+		if (true) {
+			echo '<script nonce="' . Adminer\get_nonce() . '">
                 document.addEventListener("DOMContentLoaded", function() {
                     // Create command palette HTML
                     const overlay = document.createElement("div");
@@ -50,6 +52,7 @@ class AdminerCommandPalette extends Adminer\Plugin {
                     const input = document.createElement("input");
                     input.id = "command-palette-input";
                     input.type = "text";
+                    input.autocomplete = "off";	
                     input.placeholder = "Search databases and tables...";
                     input.style.cssText = `
                         width: 100%;
@@ -79,46 +82,46 @@ class AdminerCommandPalette extends Adminer\Plugin {
                     // Build data array
                     const items = [';
 
-            // Add tables first if we are in a database
-            if (Adminer\DB != "") {
-                $tables = array_keys(Adminer\tables_list());
-                foreach ($tables as $table) {
-                    $table_escaped = Adminer\h($table);
-                    $url = Adminer\ME . "select=" . urlencode($table);
-                    echo '
+			// Add tables first if we are in a database
+			if (Adminer\DB != "") {
+				$tables = array_keys(Adminer\tables_list());
+				foreach ($tables as $table) {
+					$table_escaped = Adminer\h($table);
+					$url = Adminer\ME . "select=" . urlencode($table);
+					echo '
                         {
                             name: "' . $table_escaped . '",
                             url: "' . addslashes($url) . '",
                             type: "table"
                         },';
-                }
-            }
+				}
+			}
 
-            // Add databases after tables
-            $databases = array();
-            try {
-                $databases = Adminer\get_databases(false);
-            } catch (\Throwable $e) {
-            }
-            $hidden_databases = array('information_schema', 'mysql', 'performance_schema', 'sys');
-            if ($databases) {
-                foreach ($databases as $database) {
-                    // Skip system databases
-                    if (in_array($database, $hidden_databases)) {
-                        continue;
-                    }
-                    $database_escaped = Adminer\h($database);
-                    $url = Adminer\ME . "db=" . urlencode($database);
-                    echo '
+			// Add databases after tables
+			$databases = array();
+			try {
+				$databases = Adminer\get_databases(false);
+			} catch (\Throwable $e) {
+			}
+			$hidden_databases = array('information_schema', 'mysql', 'performance_schema', 'sys');
+			if ($databases) {
+				foreach ($databases as $database) {
+					// Skip system databases
+					if (in_array($database, $hidden_databases)) {
+						continue;
+					}
+					$database_escaped = Adminer\h($database);
+					$url = Adminer\ME . "db=" . urlencode($database);
+					echo '
                         {
                             name: "' . $database_escaped . '",
                             url: "' . addslashes($url) . '",
                             type: "database"
                         },';
-                }
-            }
+				}
+			}
 
-            echo '
+			echo '
                     ];
 
                     let selectedIndex = 0;
@@ -513,10 +516,10 @@ class AdminerCommandPalette extends Adminer\Plugin {
                     renderResults();
                 });
             </script>';
-        }
-    }
+		}
+	}
 
-    protected $translations = array(
-        'en' => array('' => 'Command palette for quick table and database navigation'),
-    );
+	protected $translations = array(
+		'en' => array('' => 'Command palette for quick table and database navigation'),
+	);
 }
